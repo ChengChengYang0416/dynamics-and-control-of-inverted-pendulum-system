@@ -22,7 +22,9 @@ theta_error_accu = zeros(1, 1);
 
 % desired position and angle
 desired_theta = 0.0;
+desired_theta_dot = 0.0;
 desired_x = 0.1;
+desired_x_dot = 0.0;
 
 % simulation start
 for i = 1:length(t)
