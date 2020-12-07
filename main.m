@@ -12,7 +12,7 @@ t = 0:delta_t:sim_t;
 theta = zeros(1, length(t)+1);
 theta_dot = zeros(1, length(t)+1);
 theta_ddot = zeros(1, length(t));
-x =zeros(1, length(t)+1);
+x = zeros(1, length(t)+1);
 x_dot = zeros(1, length(t)+1);
 x_ddot = zeros(1, length(t));
 Fx = zeros(1, length(t));
@@ -30,5 +30,13 @@ desired_x_dot = 0.0;
 
 % simulation start
 for i = 1:length(t)
-    
+    % calculate error of angle and position
+    theta_error_now = desired_theta - theta(1, i);
+    theta_error_dot_now = desired_theta_dot - theta_dot(1, i);
+    theta_error_accu = theta_error_accu + theta_error_now;
+    theta_error_accu = error_bound(theta_error_accu, 5);
+    pos_error_now = desired_x - x(1, i);
+    pos_error_dot_now = desired_x_dot - x_dot(1, i);
+    pos_error_accu = pos_error_accu + pos_error_now;
+    pos_error_accu = error_bound(pos_error_accu, 5);
 end
