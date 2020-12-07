@@ -11,6 +11,6 @@ pid_c.p = 1.0;
 pid_c.d = 1.0;
 pid_c.i = 0.0;
 
-pid_d.p = 1.0;
-pid_d.d = 1.0;
-pid_d.i = 0.0;
+pid_p.p = 1.0;
+pid_p.d = 1.0;
+pid_p.i = 0.0;
