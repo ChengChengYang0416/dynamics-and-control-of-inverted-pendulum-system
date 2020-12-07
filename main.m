@@ -19,6 +19,8 @@ Fx = zeros(1, length(t));
 theta_degree = zeros(1, length(t)+1);
 theta_error_now = zeros(1, 1);
 theta_error_accu = zeros(1, 1);
+pos_error_now = zeros(1, 1);
+pos_error_accu = zeros(1, 1);
 
 % desired position and angle
 desired_theta = 0.0;
