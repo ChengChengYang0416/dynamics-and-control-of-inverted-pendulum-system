@@ -8,6 +8,9 @@ dt = 0.001;
 sim_t = 50;
 t = 0:dt:sim_t;
 
+% desired states
+Xd = [0.1; 0; 0; 0];
+
 % initialize the state variables of the inverted pendulem system
 X = zeros(4, length(t)+1);
 X_dot = zeros(4, length(t)+1);
@@ -18,6 +21,19 @@ X0 = [0; 0; 0; 0];
 X(:, 1) = X0;
 iter = 2;
 
+% save the errors of the states
+eX = zeros(2, length(t)+1);
+eX_dot = zeros(2, length(t)+1);
+eX_int = zeros(2, length(t)+1);
+
 for i = dt:dt:sim_t
+    eX_xp = eX(1, iter - 1);
+    eX(1, iter) = Xd(1) - X(1, iter);
+    eX_dot(1, iter) = (eX(1, iter) - eX_xp)/dt;
+    eX_int(1, iter) = eX_int(1, iter-1) + eX(1, iter)*dt;
     
+    eX_qp = eX(2, iter - 1);
+    eX(3, iter) = Xd(3) - X(3, iter);
+    eX_dot(2, iter) = (eX(2, iter) - eX_qp)/dt;
+    eX_int(2, iter) = eX_int(2, iter-1) + eX(2, iter)*dt;
 end
