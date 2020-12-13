@@ -31,7 +31,7 @@ for i = dt:dt:sim_t
     eX_dot(1, iter) = (eX(1, iter) - eX(1, iter - 1))/dt;
     eX_int(1, iter) = eX_int(1, iter-1) + eX(1, iter)*dt;
 
-    eX(3, iter) = Xd(3) - X(3, iter);
+    eX(2, iter) = Xd(3) - X(3, iter);
     eX_dot(2, iter) = (eX(2, iter) - eX(2, iter - 1))/dt;
     eX_int(2, iter) = eX_int(2, iter-1) + eX(2, iter)*dt;
 end
