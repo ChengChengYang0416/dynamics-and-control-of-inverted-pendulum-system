@@ -27,13 +27,11 @@ eX_dot = zeros(2, length(t)+1);
 eX_int = zeros(2, length(t)+1);
 
 for i = dt:dt:sim_t
-    eX_xp = eX(1, iter - 1);
     eX(1, iter) = Xd(1) - X(1, iter);
-    eX_dot(1, iter) = (eX(1, iter) - eX_xp)/dt;
+    eX_dot(1, iter) = (eX(1, iter) - eX(1, iter - 1))/dt;
     eX_int(1, iter) = eX_int(1, iter-1) + eX(1, iter)*dt;
-    
-    eX_qp = eX(2, iter - 1);
+
     eX(3, iter) = Xd(3) - X(3, iter);
-    eX_dot(2, iter) = (eX(2, iter) - eX_qp)/dt;
+    eX_dot(2, iter) = (eX(2, iter) - eX(2, iter - 1))/dt;
     eX_int(2, iter) = eX_int(2, iter-1) + eX(2, iter)*dt;
 end
