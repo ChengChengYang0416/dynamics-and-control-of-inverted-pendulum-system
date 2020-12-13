@@ -66,6 +66,7 @@ for i = 1:length(t)
     theta_degree(1, i) = rad2deg(theta(1, i));
 end
 
+% plot the states
 figure(1)
 subplot(2, 1, 1);
 plot(t, theta_degree(1, 1:length(t)));
