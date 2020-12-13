@@ -37,4 +37,5 @@ for i = dt:dt:sim_t
 
     F(1, iter) = -(pid_c.p*eX(1, iter)+pid_c.d*eX_dot(1, iter)+pid_c.i*eX_int(1, iter)) ...
                     + (pid_p.p*eX(2, iter)+pid_p.d*eX_dot(2, iter)+pid_p.i*eX_int(2, iter));
+    iter = iter + 1;
 end
