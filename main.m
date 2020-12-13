@@ -34,4 +34,7 @@ for i = dt:dt:sim_t
     eX(2, iter) = Xd(3) - X(3, iter);
     eX_dot(2, iter) = (eX(2, iter) - eX(2, iter - 1))/dt;
     eX_int(2, iter) = eX_int(2, iter-1) + eX(2, iter)*dt;
+
+    F(1, iter) = -(pid_c.p*eX(1, iter)+pid_c.d*eX_dot(1, iter)+pid_c.i*eX_int(1, iter)) ...
+                    + (pid_p.p*eX(2, iter)+pid_p.d*eX_dot(2, iter)+pid_p.i*eX_int(2, iter));
 end
