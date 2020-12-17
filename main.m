@@ -26,6 +26,7 @@ eX_dot = zeros(2, length(t));
 eX_int = zeros(2, length(t));
 
 for i = dt:dt:sim_t
+    % calculate the error of states
     eX(1, iter) = Xd(1) - X(1, iter-1);
     eX_dot(1, iter)  = (eX(1, iter) - eX(1, iter-1))/dt;
     eX_int(1, iter)  = eX_int(1, iter-1) + eX(1, iter)*dt;
@@ -34,9 +35,11 @@ for i = dt:dt:sim_t
     eX_dot(2, iter)  = (eX(2, iter) - eX(2, iter-1))/dt;
     eX_int(2, iter)  = eX_int(2, iter-1) + eX(2, iter)*dt;
 
+    % PID control
     F(iter) = -(pid_c.p*eX(1, iter) + pid_c.d*eX_dot(1, iter) + pid_c.i*eX_int(1, iter))...
                 + (pid_p.p*eX(2, iter) + pid_p.d*eX_dot(2, iter) + pid_p.i*eX_int(2, iter));
 
+    % dynamics
     [T, X_new] = ode45(@(t, x) dynamics(t, x, F(iter)), [0, dt], X(:, iter-1)', F(iter));
     X(:, iter) = X_new(end,:)';
     iter = iter + 1;
