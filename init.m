@@ -8,10 +8,10 @@ P.lp = 0.36;
 P.g = 9.81;
 
 % PID gains
-pid_c.p = 10.0;
-pid_c.d = 5.0;
+pid_c.p = 11.0;
+pid_c.d = 6.0;
 pid_c.i = 2.0;
 
-pid_p.p = 70.0;
-pid_p.d = 5.0;
+pid_p.p = 68.0;
+pid_p.d = 8.0;
 pid_p.i = 5.0;
