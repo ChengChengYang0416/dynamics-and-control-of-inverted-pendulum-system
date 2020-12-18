@@ -36,9 +36,8 @@ for i = dt:dt:sim_t
     eX_int(2, iter)  = eX_int(2, iter-1) + eX(2, iter)*dt;
 
     % PID control
-    F(iter) = -(pid_c.p*eX(1, iter) + pid_c.d*eX_dot(1, iter) + pid_c.i*eX_int(1, iter))...
-                + (pid_p.p*eX(2, iter) + pid_p.d*eX_dot(2, iter) + pid_p.i*eX_int(2, iter));
-
+    F(iter) = controller_pid(pid_c, pid_p, eX(:, iter), eX_dot(:, iter), eX_int(:, iter));
+    
     % dynamics
     [T, X_new] = ode45(@(t, x) dynamics(t, x, F(iter)), [0, dt], X(:, iter-1)', F(iter));
     X(:, iter) = X_new(end,:)';
